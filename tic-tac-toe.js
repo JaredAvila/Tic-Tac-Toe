@@ -8,6 +8,9 @@ const startOver = document.getElementById("startOver");
 const winBtn = document.getElementById("winBtn");
 const playersTurnDisp = document.getElementById("playerName");
 const gameBoard = document.getElementById("gameContainer");
+const winnerDisp = document.getElementById("winnerDisp");
+const winnerCircle = document.getElementById("winnerCircle");
+const backdrop = document.getElementById("backdrop");
 
 // Players Class
 class Player {
@@ -42,7 +45,8 @@ startOver.addEventListener("click", () => {
   returnToMain();
 });
 winBtn.addEventListener("click", () => {
-  // Show play button screen
+  winnerCircle.classList.add("hidden");
+  backdrop.classList.add("hidden");
   returnToMain();
 });
 
@@ -148,17 +152,32 @@ const winCheck = () => {
   if (gameGrid[6] === gameGrid[7] && gameGrid[6] === gameGrid[8]) {
     winner(gameGrid[6]);
   }
+  if (
+    gameGrid[0] &&
+    gameGrid[1] &&
+    gameGrid[2] &&
+    gameGrid[3] &&
+    gameGrid[4] &&
+    gameGrid[5] &&
+    gameGrid[6] &&
+    gameGrid[7] &&
+    gameGrid[8]
+  ) {
+    winner("draw");
+  }
 };
 
 // determines the winner
 const winner = letter => {
   if (letter) {
     if (letter === "X") {
-      console.log(playerOne.name + " wins!");
-      returnToMain();
+      winnerDisp.innerHTML = playerOne.name + " wins!";
+    } else if (letter === "O") {
+      winnerDisp.innerHTML = playerTwo.name + " wins!";
     } else {
-      console.log(playerTwo.name + " wins!");
-      returnToMain();
+      winnerDisp.innerHTML = "Draw!";
     }
+    winnerCircle.classList.remove("hidden");
+    backdrop.classList.remove("hidden");
   }
 };
