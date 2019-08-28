@@ -1,9 +1,10 @@
 // DOM elements
 
-const playBtn = document.querySelector(".playBtn");
-const play = document.querySelector(".play");
-const startOver = document.querySelector(".startOver");
-const playersTurnDisp = document.querySelector(".playerName");
+const playBtn = document.getElementById("playBtn");
+const play = document.getElementById("play");
+const startOver = document.getElementById("startOver");
+const playersTurnDisp = document.getElementById("playerName");
+const gameBoard = document.getElementById("gameBoard");
 
 // Players
 class Player {
@@ -48,8 +49,12 @@ const createPlayers = () => {
     "Player Two"
   );
   // remove white space/prevent users from entering only spaces as a name
-  playerOneName = playerOneName.trim();
-  playerTwoName = playerTwoName.trim();
+  if (playerOneName) {
+    playerOneName = playerOneName.trim();
+  }
+  if (playerTwoName) {
+    playerTwoName = playerTwoName.trim();
+  }
   // If no name provided then give default values
   if (!playerOneName) {
     playerOneName = "Player One";
