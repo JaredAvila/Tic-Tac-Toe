@@ -15,7 +15,9 @@
     <header class="header">
       <h1 class="title">Tic Tac Toe</h1>
       <div class="player">
-        <div class="playerName transName" id="playerName">Player One's Turn</div>
+        <div class="playerName transName" id="playerName">
+          Player One's Turn
+        </div>
       </div>
     </header>
     <main class="gameArea">
@@ -23,21 +25,24 @@
         <button class="playBtn" id="playBtn">Play</button>
       </div>
       <div class="gameBoard" id="gameBoard">
-        <div class="row">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
+        <div id="gameContainer">
+          <div class="row">
+            <div class="box" id="1-1"></div>
+            <div class="box" id="1-2"></div>
+            <div class="box" id="1-3"></div>
+          </div>
+          <div class="row">
+            <div class="box" id="2-1"></div>
+            <div class="box" id="2-2"></div>
+            <div class="box" id="2-3"></div>
+          </div>
+          <div class="row">
+            <div class="box" id="3-1"></div>
+            <div class="box" id="3-2"></div>
+            <div class="box" id="3-3"></div>
+          </div>
         </div>
-        <div class="row">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-        </div>
-        <div class="row">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-        </div>
+
         <button class="startOver" id="startOver">Start over</button>
       </div>
     </main>

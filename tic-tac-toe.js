@@ -4,14 +4,15 @@ const playBtn = document.getElementById("playBtn");
 const play = document.getElementById("play");
 const startOver = document.getElementById("startOver");
 const playersTurnDisp = document.getElementById("playerName");
-const gameBoard = document.getElementById("gameBoard");
+const gameBoard = document.getElementById("gameContainer");
 
-// Players
+// Players Class
 class Player {
-  constructor(name) {
-    this.name = name;
+  constructor() {
+    this.name = null;
     this.turn = false;
     this.winner = false;
+    this.id = 1;
     this.movesGrid = [
       [false, false, false],
       [false, false, false],
@@ -19,6 +20,10 @@ class Player {
     ];
   }
 }
+
+// Instantiate players
+const playerOne = new Player();
+const playerTwo = new Player();
 
 // When user pushes 'Play' run startgame function
 playBtn.addEventListener("click", () => {
@@ -34,8 +39,18 @@ startOver.addEventListener("click", () => {
   playersTurnDisp.classList.add("transName");
 });
 
+gameBoard.addEventListener("click", e => {
+  const clickedBox = e.target;
+  if (clickedBox.classList[0] === "box") {
+    if (clickedBox.innerHTML === "") {
+      updateBox(clickedBox);
+    }
+  }
+});
+
 const startGame = () => {
   createPlayers();
+  toggleTurn();
 };
 
 const createPlayers = () => {
@@ -62,15 +77,29 @@ const createPlayers = () => {
   if (!playerTwoName) {
     playerTwoName = "Player Two";
   }
-  // Instantiate players
-  const playerOne = new Player(playerOneName);
-  const playerTwo = new Player(playerTwoName);
-  playerOne.turn = true;
-  playerTurn(playerOne);
-  console.log(playerOne, playerTwo);
+  playerOne.name = playerOneName;
+  playerTwo.name = playerTwoName;
+  playerTwo.turn = true;
+  playerTwo.id = 2;
 };
 
-const playerTurn = player => {
+const toggleTurn = () => {
+  // switches player turn and updates display name
+  playerOne.turn = !playerOne.turn;
+  playerTwo.turn = !playerTwo.turn;
+  let player = playerOne.turn ? playerOne : playerTwo;
   playersTurnDisp.innerHTML = `${player.name}'s Turn`;
-  playersTurnDisp.classList.remove("transName");
+  if (playersTurnDisp.classList.length === 2) {
+    playersTurnDisp.classList.remove("transName");
+  }
+};
+
+const updateBox = element => {
+  // checks who's turn is active and marks box accordingly
+  if (playerOne.turn) {
+    element.innerHTML = "X";
+  } else {
+    element.innerHTML = "O";
+  }
+  toggleTurn();
 };
