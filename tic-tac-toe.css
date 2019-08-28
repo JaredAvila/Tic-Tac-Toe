@@ -34,15 +34,15 @@ body {
     font-size: 1.5rem;
 }
 
-.player1, .player2 {
-    display: none;
+.playerName {
     padding: 1rem;
     border: .2rem solid rgb(41, 41, 41);
     margin-top: 1rem;
 }
 
-.active {
-    display: block;
+.transName {
+    color: transparent;
+    border: .2rem solid transparent;
 }
 
 .gameArea {
