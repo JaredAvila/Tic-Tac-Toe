@@ -37,19 +37,14 @@ body {
 .playerName {
     padding: 1rem;
     border: .2rem solid rgb(41, 41, 41);
-    margin-top: 1rem;
-}
-
-.transName {
-    color: transparent;
-    border: .2rem solid transparent;
+    margin: 2rem 0;
 }
 
 .gameArea {
     position: relative;
 }
 
-.play {
+.play, .playerNames {
     position: absolute;
     top: 0;
     left: 0;
@@ -61,7 +56,44 @@ body {
     background: linear-gradient(30deg, rgb(119, 190, 199), rgb(245, 245, 245));
 }
 
-.playBtn, .startOver {
+.enterNames {
+    margin-bottom: 3rem;
+    color: rgb(30, 189, 123);
+    font-size: 2.5rem;
+    letter-spacing: .2rem;
+}
+
+.play {
+    z-index: 400;
+}
+
+.playerNames {
+    padding: 4rem 0;
+    z-index: 200;
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputs p {
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+#player1, #player2 {
+    font-size: 1.8rem;
+    padding: 1rem 1rem;
+}
+
+#player1 {
+    margin-right: 1rem;
+}
+
+.playBtn, .startOver, #gameStart {
     font-size: 3rem;
     margin-top: 5rem;
     padding: 1rem 2rem;
@@ -75,16 +107,12 @@ body {
     transition: all 200ms ease;
 }
 
-.playBtn:hover, .startOver:hover {
+.playBtn:hover, .startOver:hover, #gameStart:hover {
     background-color: rgb(75, 165, 255);
 }
 
-.playBtn:active, .startOver:active {
+.playBtn:active, .startOver:active, #gameStart:active {
     box-shadow: .1rem 0 .2rem rgba(41, 41, 41, 0.555);
-}
-
-.hidden {
-    display: none;
 }
 
 .gameBoard {
@@ -113,4 +141,28 @@ body {
     box-shadow: .2rem 0 .4rem rgba(12, 12, 12, 0.589);
 }
 
-.startOver {}
+#winnerCircle {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: aquamarine;
+    padding: 5rem;
+    text-align: center;
+    box-shadow: .2rem 0 .4rem rgba(0, 0, 0, 0.521);
+    z-index: 120;
+}
+
+#backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.685);
+    z-index: 100;
+}
+
+.hidden {
+    display: none;
+}

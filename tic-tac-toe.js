@@ -2,7 +2,10 @@
 
 const playBtn = document.getElementById("playBtn");
 const play = document.getElementById("play");
+const playerNames = document.getElementById("playerNames");
+const gameStart = document.getElementById("gameStart");
 const startOver = document.getElementById("startOver");
+const winBtn = document.getElementById("winBtn");
 const playersTurnDisp = document.getElementById("playerName");
 const gameBoard = document.getElementById("gameContainer");
 
@@ -20,16 +23,25 @@ let gameGrid = [null, null, null, null, null, null, null, null, null];
 // Instantiate players
 const playerOne = new Player();
 const playerTwo = new Player();
+let playerOneName;
+let playerTwoName;
 
 // When user pushes 'Play' run startgame function
 playBtn.addEventListener("click", () => {
   // Hide play button screen
   play.classList.add("hidden");
+});
+gameStart.addEventListener("click", () => {
+  playerNames.classList.add("hidden");
   startGame();
 });
 
 // Takes user back to 'main menu'
 startOver.addEventListener("click", () => {
+  // Show play button screen
+  returnToMain();
+});
+winBtn.addEventListener("click", () => {
   // Show play button screen
   returnToMain();
 });
@@ -53,7 +65,7 @@ const startGame = () => {
 // returns to main menu and resets the game
 const returnToMain = () => {
   play.classList.remove("hidden");
-  playersTurnDisp.classList.add("transName");
+  playerNames.classList.remove("hidden");
   resetGame();
 };
 
@@ -63,26 +75,18 @@ const resetGame = () => {
   document.querySelectorAll(".box").forEach(box => {
     box.innerHTML = "";
   });
+  document.getElementById("player1").value = "";
+  document.getElementById("player2").value = "";
 };
 
 // creates players
 const createPlayers = () => {
   // Get players names
-  let playerOneName = prompt(
-    "Enter first player's name, please.",
-    "Player One"
-  );
-  let playerTwoName = prompt(
-    "Enter second player's name, please.",
-    "Player Two"
-  );
-  // remove white space/prevent users from entering only spaces as a name
-  if (playerOneName) {
-    playerOneName = playerOneName.trim();
-  }
-  if (playerTwoName) {
-    playerTwoName = playerTwoName.trim();
-  }
+  playerOneName = document.getElementById("player1").value;
+  playerTwoName = document.getElementById("player2").value;
+  // prevent users from leaving blank or entering only spaces as a name
+  playerOneName = playerOneName.trim();
+  playerTwoName = playerTwoName.trim();
   // If no name provided then give default values
   if (!playerOneName) {
     playerOneName = "Player One";
@@ -103,9 +107,6 @@ const toggleTurn = () => {
   playerTwo.turn = !playerTwo.turn;
   let player = playerOne.turn ? playerOne : playerTwo;
   playersTurnDisp.innerHTML = `${player.name}'s Turn`;
-  if (playersTurnDisp.classList.length === 2) {
-    playersTurnDisp.classList.remove("transName");
-  }
 };
 
 // checks who's turn is active and marks box accordingly
@@ -153,10 +154,11 @@ const winCheck = () => {
 const winner = letter => {
   if (letter) {
     if (letter === "X") {
-      alert(playerOne.name);
+      console.log(playerOne.name + " wins!");
+      returnToMain();
     } else {
-      alert(playerTwo.name);
+      console.log(playerTwo.name + " wins!");
+      returnToMain();
     }
-    returnToMain();
   }
 };

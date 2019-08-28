@@ -14,17 +14,31 @@
   <body>
     <header class="header">
       <h1 class="title">Tic Tac Toe</h1>
-      <div class="player">
-        <div class="playerName transName" id="playerName">
-          Player One's Turn
-        </div>
-      </div>
     </header>
     <main class="gameArea">
       <div class="play" id="play">
         <button class="playBtn" id="playBtn">Play</button>
       </div>
+      <div class="playerNames" id="playerNames">
+        <h2 class="enterNames">Please enter names</h2>
+        <div class="inputs">
+          <div>
+            <p>Player one</p>
+            <input type="text" id="player1" />
+          </div>
+          <div>
+            <p>Player two</p>
+            <input type="text" id="player2" />
+          </div>
+        </div>
+        <button id="gameStart">Start Game</button>
+      </div>
       <div class="gameBoard" id="gameBoard">
+        <div class="player">
+          <div class="playerName" id="playerName">
+            Player One's Turn
+          </div>
+        </div>
         <div id="gameContainer">
           <div class="row">
             <div class="box" id="1"></div>
@@ -42,9 +56,13 @@
             <div class="box" id="9"></div>
           </div>
         </div>
-
         <button class="startOver" id="startOver">Start over</button>
+        <div id="winnerCircle" class="hidden">
+          <h1>Jared Wins!!!</h1>
+          <button class="startOver" id="winBtn">Start Over</button>
+        </div>
       </div>
+      <div id="backdrop" class="hidden"></div>
     </main>
     <script src="tic-tac-toe.js"></script>
   </body>
